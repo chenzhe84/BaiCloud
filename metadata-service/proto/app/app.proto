@@ -1,0 +1,63 @@
+syntax="proto3";
+
+package service.metadata.app;
+
+service AppService{
+    rpc SaveApp(App)returns (Response);
+    rpc GetApp(App)returns(AppResponse);
+
+    rpc SaveModule(Module)returns(Response);
+    rpc GetModule(Module)returns(ModuleResponse);
+    
+    rpc SaveForm (Form) returns (Response);
+    rpc GetForm(Form)returns(FormResponse);
+}
+
+message App{
+    string id=1;
+    string name=2;
+    string text=3;
+}
+
+message Module {
+    string id=1;
+    string name=2;
+    string text=3;
+    string app_id=4;
+    string parent_module_id=5;
+}
+
+message Form{
+    string id=1;
+    string name=2;
+    string text=3;
+    string detail=4;
+    string app_id=5;
+    string module_id=6;
+}
+
+message Response {
+    bool result=1;
+    string message=2; 
+}
+
+message AppResponse{
+    bool result=1;
+    string message=2; 
+    App app=3;
+}
+
+message ModuleResponse{
+    bool result=1;
+    string message=2; 
+    Module module=3;
+}
+
+message FormResponse{
+    bool result=1;
+    string message=2; 
+    Form form=3;
+}
+
+
+
